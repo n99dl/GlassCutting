@@ -90,10 +90,10 @@ void Cut(int x,Config base)
     }
     Try(1,bigGlassSizeM,x,base.remainingSize,base.index);
 }
-void printConfig(Config temp)
+void buildResultTable(Config temp)
 {
     if (temp.ori) return;
-    printConfig(configList[temp.predecessor]);
+    buildResultTable(configList[temp.predecessor]);
     int place = 0;
     int cut = 0;
     for (int i=1; i<=n; i++)
@@ -139,7 +139,7 @@ int main()
         if (temp.numberOfSelectedGlass == n)
         {
             cout<<temp.cost<<"\n";
-            printConfig(temp);
+            buildResultTable(temp);
             for (int i=1;i<=bigGlassSizeM;i++){
                 for (int j=1;j<=bigGlassSizeN;j++)
                     {
